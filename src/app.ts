@@ -14,7 +14,12 @@ app.use(express.json());
 app.use(cookieParser());
 // app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 // app.use(cors({ origin: "https://mpms-khaki.vercel.app", credentials: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://mpms-khaki.vercel.app", "http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 // middlewares
 app.use(helmet());
@@ -30,17 +35,5 @@ app.get("/", (req: Request, res: Response) => {
 // Middleware usage
 app.use(globalErrorHandler as any);
 app.use(notFound as any);
-
-// unknown route handling
-app.all("*", (req, res) => {
-  res.status(400).json({
-    success: false,
-    message: `Route ${req.originalUrl} cannot found`,
-    error: {
-      code: 404,
-      description: "Please provide an valid Route",
-    },
-  });
-});
 
 export default app;
