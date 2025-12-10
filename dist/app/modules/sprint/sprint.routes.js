@@ -11,7 +11,7 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const auth_1 = __importDefault(require("../../middlewares/auth"));
 const user_constant_1 = require("../user/user.constant");
 const router = (0, express_1.Router)();
-router.post("/create-sprint", (0, auth_1.default)(user_constant_1.USER_ROLE.admin), (0, validateRequest_1.default)(sprint_validation_1.sprintValidation.createSprintValidationSchema), sprint_controller_1.SprintControllers.createSprint);
+router.post("/create-sprint", (0, auth_1.default)(user_constant_1.USER_ROLE.admin, user_constant_1.USER_ROLE.member), (0, validateRequest_1.default)(sprint_validation_1.sprintValidation.createSprintValidationSchema), sprint_controller_1.SprintControllers.createSprint);
 router.get("/", sprint_controller_1.SprintControllers.getAllSprints);
 router.get("/:id", sprint_controller_1.SprintControllers.getSingleSprint);
 router.patch("/:id", (0, validateRequest_1.default)(sprint_validation_1.sprintValidation.updateSprintValidationSchema), sprint_controller_1.SprintControllers.updateSprint);

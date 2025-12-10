@@ -8,7 +8,7 @@ const config_1 = __importDefault(require("./app/config"));
 const app_1 = __importDefault(require("./app"));
 const start = async () => {
     try {
-        await mongoose_1.default.connect(config_1.default.mongoUri);
+        await mongoose_1.default.connect("mongodb+srv://masud:TitForTat953218@cluster0.myz2n.mongodb.net/mpms?appName=Cluster0");
         console.log("MongoDB connected");
         const port = config_1.default.port;
         app_1.default.listen(port, () => {

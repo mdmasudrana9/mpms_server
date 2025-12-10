@@ -14,7 +14,9 @@ const loginUser = (0, catchAsync_1.default)(async (req, res) => {
     const { refreshToken, accessToken, needsPasswordChange } = result;
     res.cookie("refreshToken", refreshToken, {
         secure: process.env.NODE_ENV === "production",
+        // secure: true,
         httpOnly: true,
+        sameSite: "none",
     });
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -39,6 +41,7 @@ const changePassword = (0, catchAsync_1.default)(async (req, res) => {
 });
 const refreshToken = (0, catchAsync_1.default)(async (req, res) => {
     console.log("🔥 Refresh token API hit!");
+    console.log("req.cookies in controller :>> ", req.cookies);
     const { refreshToken } = req.cookies;
     const result = await auth_service_1.AuthService.refreshToken(refreshToken);
     (0, sendResponse_1.default)(res, {

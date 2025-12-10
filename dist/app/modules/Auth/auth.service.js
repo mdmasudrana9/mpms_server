@@ -36,7 +36,7 @@ const loginUser = async (payload) => {
     };
     const accessToken = jsonwebtoken_1.default.sign(JwtPayload, config_1.default.jwt_secret, {
         //expiresIn: config.jwt_access_expiration,
-        expiresIn: "5s",
+        expiresIn: "1d",
     });
     const refreshToken = jsonwebtoken_1.default.sign(JwtPayload, config_1.default.jwt_refresh_secret, {
         //expiresIn: config.jwt_refresh_expiration,
@@ -80,6 +80,7 @@ const changePassword = async (userData, payload) => {
     return null;
 };
 const refreshToken = async (token) => {
+    console.log("token :>> ", token);
     //if the token is valid
     const decoded = jsonwebtoken_1.default.verify(token, config_1.default.jwt_refresh_secret);
     const { userId, iat } = decoded;

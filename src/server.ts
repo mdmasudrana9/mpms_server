@@ -4,7 +4,9 @@ import app from "./app";
 
 const start = async () => {
   try {
-    await mongoose.connect(config.mongoUri as string);
+    await mongoose.connect(
+      "mongodb+srv://masud:TitForTat953218@cluster0.myz2n.mongodb.net/mpms?appName=Cluster0"
+    );
     console.log("MongoDB connected");
 
     const port = config.port;
